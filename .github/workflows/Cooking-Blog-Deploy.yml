@@ -31,6 +31,7 @@ jobs:
     - name: Checkout Codes
       uses: actions/checkout@v2
       with:
+        ref: source
         submodules: recursive # recursively checkout submodules
 
     # from: https://github.com/actions/setup-node  
