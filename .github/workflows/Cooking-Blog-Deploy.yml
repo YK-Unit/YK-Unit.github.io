@@ -1,0 +1,75 @@
+name: Cooking-Blog-Deploy
+
+# Controls when the action will run. Triggers the workflow on push
+# events but only for the master branch
+on:
+  push:
+    branches: [master]
+    paths-ignore: ["README.md", "LICENSE.md", ".gitignore", ".github/**", "*.log"]
+
+  # Used for Triggering by other repository
+  # from: https://github.com/marketplace/actions/repository-dispatch
+  repository_dispatch:
+    types: [deploy-blog-event]
+
+# Setup Timezone
+# from: https://xirikm.net/2020/313-1
+env:
+  TZ: Asia/Shanghai
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    # from: https://github.com/actions/checkout  
+    - name: Checkout Codes
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive # recursively checkout submodules
+
+    # from: https://github.com/actions/setup-node  
+    - name: Setup Node Env
+      uses: actions/setup-node@v1
+      with:
+        node-version: "13.x"
+
+    - name: Setup Hexo Env
+      run: |
+        npm install hexo-cli -g
+        npm install
+
+    - name: Download YorkCooking-Blog-Source to source/_posts
+      run: |
+        git clone https://github.com/YK-Unit/YorkCooking-Blog-Source.git source/_posts
+
+    # from: https://github.com/actions/starter-workflows/issues/68#issuecomment-592997170
+    # 注意：实践证明，刚刚手动设置生成的环境变量在当前不可用，需要到next-step才能用
+    # 详细可见：https://github.com/YK-Unit/Github-Actions-Demo/blob/master/.github/workflows/test.yml
+    - name: Generate Env Variable SITE_UPDATED_LOG
+      run: |
+       export SITE_UPDATED_LOG_TEMP="(GithubActions) Site updated at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+       echo "::set-env name=SITE_UPDATED_LOG::$SITE_UPDATED_LOG_TEMP"
+       echo "SITE_UPDATED_LOG: ${{ env.SITE_UPDATED_LOG }}"
+       echo ""
+
+    # Deploy YorkFish Hexo Blog website
+    # from: https://github.com/marketplace/actions/hexo-action
+    - name: Deploy Blog
+      id: deploy
+      uses: sma11black/hexo-action@v1.0.1
+      with:
+        deploy_key: ${{ secrets.YK_Unit_github_io_deploy_key }}
+        user_name: "York"  # (or delelte this input setting to use bot account)
+        user_email: "yorkzhang520@gmail.com"  # (or delelte this input setting to use bot account)
+        commit_msg: ${{ env.SITE_UPDATED_LOG }}  # (or delelte this input setting to use hexo default settings)
+    
+    # Use the output from the `deploy` step(use for test action)
+    - name: Get the output
+      run: |
+        echo "${{ steps.deploy.outputs.notify }}"
