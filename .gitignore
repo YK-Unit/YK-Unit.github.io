@@ -6,4 +6,5 @@ node_modules/
 public/
 .deploy*/
 .github_actions_workspace
+source/_posts
 
