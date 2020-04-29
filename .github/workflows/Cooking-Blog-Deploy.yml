@@ -58,7 +58,7 @@ jobs:
        echo "SITE_UPDATED_LOG: ${{ env.SITE_UPDATED_LOG }}"
        echo ""
 
-    # Deploy YorkFish Hexo Blog website
+    # Deploy YorkCooking Blog website
     # from: https://github.com/marketplace/actions/hexo-action
     - name: Deploy Blog
       id: deploy
