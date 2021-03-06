@@ -55,7 +55,7 @@ jobs:
     - name: Generate Env Variable SITE_UPDATED_LOG
       run: |
        export SITE_UPDATED_LOG_TEMP="(GithubActions) Site updated at $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-       echo "::set-env name=SITE_UPDATED_LOG::$SITE_UPDATED_LOG_TEMP"
+       echo "SITE_UPDATED_LOG=${SITE_UPDATED_LOG_TEMP}" >> $GITHUB_ENV
        echo "SITE_UPDATED_LOG: ${{ env.SITE_UPDATED_LOG }}"
        echo ""
 
