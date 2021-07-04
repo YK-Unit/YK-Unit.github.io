@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>烹</title>
+  <icon>https://yorkfish.me/icon.png</icon>
+  <subtitle>编程如小烹</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://yorkfish.me/"/>
+  <updated>2020-04-29T07:00:00.000Z</updated>
+  <id>https://yorkfish.me/</id>
+  
+  <author>
+    <name>York</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编程如小烹</title>
+    <link href="https://yorkfish.me/2020/%E7%BC%96%E7%A8%8B%E5%A6%82%E5%B0%8F%E7%83%B9/readme/"/>
+    <id>https://yorkfish.me/2020/%E7%BC%96%E7%A8%8B%E5%A6%82%E5%B0%8F%E7%83%B9/readme/</id>
+    <published>2020-04-29T07:00:00.000Z</published>
+    <updated>2020-04-29T07:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;08年，大一下学期，在“程序设计基础”第一次课程上，于津老师问：程序员编程像什么？那时我回答说：如厨师做烹饪。而现在，我的想法依然没变：编程如小烹。&lt;/p&gt;
+&lt;p&gt;编程如小烹，当追求一个好的作品时，二者都需：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用心设计&lt;/li&gt;
+&lt;li&gt;细致实现&lt;
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="2020" scheme="https://yorkfish.me/tags/2020/"/>
+    
+  </entry>
+  
+</feed>
