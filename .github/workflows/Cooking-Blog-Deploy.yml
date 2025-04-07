@@ -29,19 +29,20 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     # from: https://github.com/actions/checkout  
     - name: Checkout Codes
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         ref: source
         submodules: recursive # recursively checkout submodules
 
     # from: https://github.com/actions/setup-node  
     - name: Setup Node Env
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: "13.x"
+        node-version: "20.x"
 
     - name: Setup Hexo Env
       run: |
+        npm ci
         npm install hexo-cli -g
         npm install
 

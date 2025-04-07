@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 烹
-subtitle: '编程如小烹'
-description: 'Cooking with your imagination'
+title: YorkFish Blog
+subtitle: 'KISS'
+description: 'Keep IT Simple & Stupid'
 keywords:
-author: York
-language: zh-CN
+author: YorkFish
+language: en
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://yorkfish.me/
+url: https://blog.yorkfish.me
 root: /
 permalink: :title/
 permalink_defaults:
@@ -24,9 +24,9 @@ pretty_urls:
 # Directory
 source_dir: source
 public_dir: public
-#tag_dir: tags
+tag_dir: tags
 archive_dir: archives
-#category_dir: categories
+category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render: ["_posts/LICENSE.md", "_posts/README.md", "_posts/template/**/*.*"]
@@ -43,6 +43,9 @@ filename_case: 0
 render_drafts: false
 post_asset_folder: true
 relative_link: false
+marked:
+  prependRoot: true
+  postAsset: true
 future: true
 highlight:
   enable: true
@@ -93,7 +96,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: ayer
+theme: next
 
 # 出站链接优化
 nofollow:
@@ -125,7 +128,41 @@ feed:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@github.com:YK-Unit/YK-Unit.github.io.git
-  branch: master
+  - type: git
+    repo: git@github.com:YK-Unit/Fish-Blog.git
+    branch: gh-pages
+  - type: baidu_url_submitter
+    
+# sitemap
+## supported by plugin:: hexo-generator-sitemap
+sitemap:
+    path: sitemap.xml
+    # template: ./sitemap_template.xml
+    # rel: false
+## supported by plugin:: hexo-generator-baidu-sitemap
+baidusitemap:
+    path: baidusitemap.xml
 
+# robots.txt
+## supported by plugin: hexo-generator-robotstxt
+robotstxt:
+  useragent: "*"
+  allow:
+    - /
+  disallow:
+    - /vendors/
+    - /js/
+    - /css/
+    - /fonts/
+    - /fancybox/
+  sitemap: 
+    - https://blog.yorkfish.me/sitemap.xml
+    - https://blog.yorkfish.me/baidusitemap.xml
+
+# auto submit url to baidu
+## supported by plugin: npm install hexo-baidu-url-submit --save
+baidu_url_submit:
+  count: 50 ## 提交最新的链接个数
+  host: blog.yorkfish.me ## 百度站长平台中注册的域名
+  token: RbQ2zJnVJpOy53lD ## 准入秘钥
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
