@@ -61,11 +61,12 @@ jobs:
 
     # Deploy YorkCooking Blog website
     # from: https://github.com/marketplace/actions/hexo-action
+    # fix https://github.com/sma11black/hexo-action/issues/31  highlight_alias.js Error: EACCES: permission denied, open 'highlight_alias.json' 
     - name: Deploy Blog
       id: deploy
-      uses: sma11black/hexo-action@v1.0.1
+      uses: QyInvoLing/hexo-action@1.0.6
       with:
-        deploy_key: ${{ secrets.YK_Unit_github_io_deploy_key }}
+        deploy_key: ${{ secrets.YK_UNIT_GITHUB_IO_DEPLOY_KEY }}
         user_name: "York"  # (or delelte this input setting to use bot account)
         user_email: "yorkzhang520@gmail.com"  # (or delelte this input setting to use bot account)
         commit_msg: ${{ env.SITE_UPDATED_LOG }}  # (or delelte this input setting to use hexo default settings)
